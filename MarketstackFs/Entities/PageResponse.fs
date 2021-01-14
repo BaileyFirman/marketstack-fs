@@ -6,7 +6,7 @@ module PageResponse =
     exception PaginationException of string
 
     type PageResponse() =
-        member __.MaxLimit: int = 1000
+        static member MaxLimit: int = 1000
 
     type PageResponse<'T>() =
         member __.Pagination: Pagination =
@@ -28,13 +28,12 @@ module PageResponse =
         member __.AllRequestOffsets(): list<int> =
             let offsets: list<int> = []
             let paginationTotal = __.Pagination.Total
-            let maxLimit = (PageResponse()).MaxLimit
 
             let rec addOffset start: list<int> =
                 match start < paginationTotal with
                 | true ->
                     offsets |> List.append [ start ] |> ignore
-                    addOffset (start + maxLimit)
+                    addOffset (start + PageResponse.MaxLimit)
                 | false -> offsets
 
-            addOffset (__.Pagination.Offset + maxLimit)
+            addOffset (__.Pagination.Offset + PageResponse.MaxLimit)
