@@ -2,6 +2,7 @@
 
 open MarketstackFs.Entities.Exchanges.Currency
 open Newtonsoft.Json
+
 module Exchange =
     type Exchange =
         { Acronym: string

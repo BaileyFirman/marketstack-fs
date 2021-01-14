@@ -1,7 +1,7 @@
 ﻿namespace MarketstackFs.Services
 
-open MarketstackFs.Entities.PageResponse
 open FSharp.Data
+open MarketstackFs.Entities.PageResponse
 open Newtonsoft.Json
 
 module HttpClient =
@@ -13,7 +13,7 @@ module HttpClient =
         async {
             let pageOffset =
                 match offset with
-                | Some(offset) -> offset
+                | Some (offset) -> offset
                 | None -> 0
 
             let pagingQueryStringItems: QueryStringItem list =

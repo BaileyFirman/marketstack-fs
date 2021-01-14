@@ -1,7 +1,7 @@
 ﻿namespace MarketstackFs.Entities.Stocks
 
-open System
 open Newtonsoft.Json
+open System
 
 module StockBar =
     type StockBar =

@@ -1,11 +1,11 @@
 ﻿namespace MarketstackFs.Services
 
-open MarketstackFs.Interfaces.IMarketstackService
 open MarketstackFs.Entities.Exchanges.Exchange
-open MarketstackFs.Services.MarketstackOptions
-open MarketstackFs.Services.HttpClient
 open MarketstackFs.Entities.Stocks.Stock
 open MarketstackFs.Entities.Stocks.StockBar
+open MarketstackFs.Interfaces.IMarketstackService
+open MarketstackFs.Services.HttpClient
+open MarketstackFs.Services.MarketstackOptions
 
 module MarketstackService =
     type MarketstackService(options) =
