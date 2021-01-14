@@ -25,5 +25,6 @@
     <Compile Include="Interfaces\IMarketstackService.fs" />
     <Compile Include="Services\MarketstackOptions.fs" />
     <Compile Include="Services\HttpClient.fs" />
+    <Compile Include="Services\MarketstackService.fs" />
   </ItemGroup>
 </Project>
