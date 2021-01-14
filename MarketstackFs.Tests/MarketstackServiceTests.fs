@@ -6,10 +6,13 @@ open MarketstackFs.Services.MarketstackService
 open NUnit.Framework
 open System
 
-let testKey = ""
+let apiTokenVariable = "ASPNETCORE_MarketstackApiToken"
+
+let apiToken =
+    Environment.GetEnvironmentVariable(apiTokenVariable, EnvironmentVariableTarget.Machine)
 
 let msOptions: MarketstackOptions =
-    { ApiToken = testKey
+    { ApiToken = apiToken
       MaxRequestsPerSecond = 1
       Https = false }
 
@@ -41,7 +44,7 @@ let GetExchangeStocksReturnsStocks () =
 [<Test>]
 let GetStockEodBarsReturnsBars () =
     let appleSymbol = "AAPL"
-    let fromDate = new DateTime(2020, 1, 1)
+    let fromDate = DateTime(2020, 1, 1)
     let toDate = DateTime.Now
 
     let bars =
@@ -70,7 +73,7 @@ let GetStockEodBarsParallelReturnsBars () =
           "VEEV"
           "MOH" ]
 
-    let fromDate = new DateTime(2020, 1, 1)
+    let fromDate = DateTime(2020, 1, 1)
     let toDate = DateTime.Now
 
     let stockBars =
