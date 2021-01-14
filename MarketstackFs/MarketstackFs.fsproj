@@ -8,9 +8,13 @@
     <Folder Include="Entities\" />
     <Folder Include="Entities\Exchanges\" />
     <Folder Include="Entities\Stocks\" />
+    <Folder Include="Interfaces\" />
+    <Folder Include="Services\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="FSharp.Json" Version="0.4.0" />
+    <PackageReference Include="FSharp.Data" Version="3.3.3" />
     <Compile Include="Entities\Pagination.fs" />
     <Compile Include="Entities\PageResponse.fs" />
     <Compile Include="Entities\Exchanges\Currency.fs" />
@@ -18,6 +22,8 @@
     <Compile Include="Entities\Exchanges\ExchangesResponse.fs" />
     <Compile Include="Entities\Stocks\Stock.fs" />
     <Compile Include="Entities\Stocks\StockBar.fs" />
-    <PackageReference Include="FSharp.Json" Version="0.4.0" />
+    <Compile Include="Interfaces\IMarketstackService.fs" />
+    <Compile Include="Services\MarketstackOptions.fs" />
+    <Compile Include="Services\HttpClient.fs" />
   </ItemGroup>
 </Project>
