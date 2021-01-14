@@ -1,23 +1,23 @@
 ﻿namespace MarketstackFs.Entities.Stocks
 
-open FSharp.Json
 open System
+open Newtonsoft.Json
 
 module StockBar =
     type StockBar =
-        { [<JsonField("adj_close")>]
-          AdjustedClose: float option
-          [<JsonField("adj_high")>]
-          AdjustedHigh: float option
-          [<JsonField("adj_low")>]
-          AdjustedLow: float option
-          [<JsonField("adj_volume")>]
-          AdjustedVolume: float option
-          Close: float option
-          High: float option
-          Low: float option
-          Open: float option
-          Volume: float option
+        { [<JsonProperty("adj_close")>]
+          AdjustedClose: float
+          [<JsonProperty("adj_high")>]
+          AdjustedHigh: float
+          [<JsonProperty("adj_low")>]
+          AdjustedLow: float
+          [<JsonProperty("adj_volume")>]
+          AdjustedVolume: float
+          Close: float
+          High: float
+          Low: float
+          Open: float
+          Volume: float
           Exchange: string
           Symbol: string
           Date: DateTime }

@@ -1,9 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
   </PropertyGroup>
-
   <ItemGroup>
     <Folder Include="Entities\" />
     <Folder Include="Entities\Exchanges\" />
@@ -11,20 +9,20 @@
     <Folder Include="Interfaces\" />
     <Folder Include="Services\" />
   </ItemGroup>
-
   <ItemGroup>
-    <PackageReference Include="FSharp.Json" Version="0.4.0" />
     <PackageReference Include="FSharp.Data" Version="3.3.3" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="5.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <Compile Include="Entities\Stocks\Stock.fs" />
+    <Compile Include="Entities\Stocks\StockBar.fs" />
     <Compile Include="Entities\Pagination.fs" />
     <Compile Include="Entities\PageResponse.fs" />
     <Compile Include="Entities\Exchanges\Currency.fs" />
     <Compile Include="Entities\Exchanges\Exchange.fs" />
     <Compile Include="Entities\Exchanges\ExchangesResponse.fs" />
-    <Compile Include="Entities\Stocks\Stock.fs" />
-    <Compile Include="Entities\Stocks\StockBar.fs" />
     <Compile Include="Interfaces\IMarketstackService.fs" />
-    <Compile Include="Services\MarketstackOptions.fs" />
     <Compile Include="Services\HttpClient.fs" />
+    <Compile Include="Services\MarketstackOptions.fs" />
     <Compile Include="Services\MarketstackService.fs" />
   </ItemGroup>
 </Project>

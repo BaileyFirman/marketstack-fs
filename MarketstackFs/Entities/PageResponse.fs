@@ -1,6 +1,7 @@
 ﻿namespace MarketstackFs.Entities
 
 open MarketstackFs.Entities.Pagination
+open Newtonsoft.Json
 
 module PageResponse =
     exception PaginationException of string
@@ -8,14 +9,12 @@ module PageResponse =
     type PageResponse() =
         static member MaxLimit: int = 1000
 
-    type PageResponse<'T>() =
-        member __.Pagination: Pagination =
-            { Limit = 0
-              Offset = 0
-              Count = 0
-              Total = 0 }
+    type PageResponse<'T>(pagination, data) =
+        [<JsonProperty("pagination")>]
+        member __.Pagination: Pagination = pagination
 
-        member __.Data: list<'T> = []
+        [<JsonProperty("data")>]
+        member __.Data: list<'T> = data
 
         member __.IsLastResponse: bool =
             __.Pagination.Count < __.Pagination.Limit

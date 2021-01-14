@@ -1,14 +1,13 @@
 ﻿namespace MarketstackFs.Entities.Exchanges
 
-open FSharp.Json
 open MarketstackFs.Entities.Exchanges.Currency
-
+open Newtonsoft.Json
 module Exchange =
     type Exchange =
         { Acronym: string
           City: string
           Country: string
-          [<JsonField("country_code")>]
+          [<JsonProperty("country_code")>]
           CountryCode: string
           Mic: string
           Name: string

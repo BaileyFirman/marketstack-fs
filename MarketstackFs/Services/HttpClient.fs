@@ -2,18 +2,23 @@
 
 open MarketstackFs.Entities.PageResponse
 open FSharp.Data
-open FSharp.Json
+open Newtonsoft.Json
 
 module HttpClient =
     exception PageLimitException of string
 
     type QueryStringItem = string * string
 
-    let GetPageResonse<'T> url (queryString: QueryStringItem list) limit (offset: int): Async<PageResponse<'T>> =
+    let GetPageResonse<'T> url (queryString: QueryStringItem list) limit (offset: int option): Async<PageResponse<'T>> =
         async {
+            let pageOffset =
+                match offset with
+                | Some(offset) -> offset
+                | None -> 0
+
             let pagingQueryStringItems: QueryStringItem list =
                 [ "limit", limit.ToString()
-                  "offset", offset.ToString() ]
+                  "offset", pageOffset.ToString() ]
 
             let query: QueryStringItem list = queryString @ pagingQueryStringItems
 
@@ -23,7 +28,7 @@ module HttpClient =
                     return html
                 }
                 |> Async.RunSynchronously
-                |> Json.deserialize<PageResponse<'T>>
+                |> JsonConvert.DeserializeObject<PageResponse<'T>>
 
             return result
         }
@@ -41,12 +46,12 @@ module HttpClient =
             let queryString: QueryStringItem list = [ "access_key", apiToken ]
 
             let firstReponse: PageResponse<'T> =
-                GetPageResonse<'T> url queryString pageLimit PageResponse.MaxLimit
+                GetPageResonse<'T> url queryString pageLimit None
                 |> Async.RunSynchronously
 
             let pages: list<PageResponse<'T>> =
                 firstReponse.AllRequestOffsets()
-                |> List.map (fun offset -> GetPageResonse<'T> url queryString pageLimit offset)
+                |> List.map (fun offset -> GetPageResonse<'T> url queryString pageLimit (Some offset))
                 |> Async.Parallel
                 |> Async.RunSynchronously
                 |> Array.toList
