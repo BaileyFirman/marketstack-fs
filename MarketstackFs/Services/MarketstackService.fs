@@ -23,7 +23,7 @@ module MarketstackService =
                 async { return GetAsync<Exchange> url options.ApiToken None }
 
             member __.GetExchangeStocks exchangeMic =
-                let url = apiUrl + "/tickers?=" + exchangeMic
+                let url = apiUrl + "/tickers?exchange=" + exchangeMic
                 async { return GetAsync<Stock> url options.ApiToken None }
 
             member __.GetStockEodBars stockSymbol fromDate toDate =
