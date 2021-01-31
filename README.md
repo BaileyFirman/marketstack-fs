@@ -1,5 +1,5 @@
 # marketstack-fs API
-A straightforward F# JSON REST library for working with (https://marketstack.com)[Marketstack]
+A straightforward F# JSON REST library for working with [Marketstack](https://marketstack.com)
 
 ## API
 
